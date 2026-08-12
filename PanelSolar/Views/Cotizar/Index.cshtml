@@ -1,0 +1,340 @@
+﻿@using AspNetCore.ReCaptcha
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@inject IOptions<ReCaptchaSettings> ReCaptchaSettings
+@model CotizarViewModel
+@{
+    ViewBag.Title = "Cotizar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Page banner area start here -->
+<section class="page-banner bg-image pt-120 pb-120">
+    <div class="container">
+        <h2 class="wow fadeInUp" data-wow-duration="1.15s" data-wow-delay=".15s">Cotizar Instalación</h2>
+        <div class="breadcrumb-list wow fadeInUp" data-wow-duration="1.30s" data-wow-delay=".30s">
+            <a href="../Home">Inicio</a><span><i class="fa-regular fa-angle-right mx-2"></i>Cotización</span>
+        </div>
+    </div>
+</section>
+<!-- Page banner area end here -->
+<!-- Contact area start here -->
+<section class="contact-area pt-120 pb-120">
+    <div class="container">
+
+        <div class="col-lg-12">
+            <div class="contact__content bor-right">
+                <div class="subscribe__item contact__form">
+                    @*  <h5 class="text-uppercase pb-10 mb-10">CONTACTANOS</h5> *@
+                    <h3 class="mb-20">Ingresa tu Cotización de Instalación</h3>
+
+                    <form method="post" class="form">
+                        @* <form method="post" asp-action="SubmitForm"> *@
+                        <div asp-validation-summary="All"></div>
+
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 8C0 3.59375 3.5625 0 8 0C12.4062 0 16 3.59375 16 8C16 12.4375 12.4062 16 8 16C3.5625 16 0 12.4375 0 8ZM11.5938 6.625C11.9375 6.28125 11.9375 5.75 11.5938 5.40625C11.25 5.0625 10.7188 5.0625 10.375 5.40625L7 8.78125L5.59375 7.40625C5.25 7.0625 4.71875 7.0625 4.375 7.40625C4.03125 7.75 4.03125 8.28125 4.375 8.625L6.375 10.625C6.71875 10.9688 7.25 10.9688 7.59375 10.625L11.5938 6.625Z"
+                                      fill="#4AAB3D" />
+                            </svg>
+                            <h5>Tus Datos</h5>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                @* <input type="text" name="txtnombre" placeholder="Nombre" min="10" max="50" required autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtNombre">Nombres</label>
+                                    <input type="text" name="TxtNombre" maxlength="30" asp-for="TxtNombre" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtNombre" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                @* <input type="text" name="txtapellido" placeholder="Apellido" min="10" max="50" required autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtApellido">Apellidos</label>
+                                    <input type="text" name="TxtApellido" maxlength="30" asp-for="TxtApellido" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtApellido" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                @* <input type="email" name="txtemail" placeholder="Email" required autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtEmail">E-mail</label>
+                                    <input type="email" name="TxtEmail" maxlength="50" asp-for="TxtEmail" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtEmail" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @* <input type="text" name="txtnumerocomtacto" placeholder="Número de Contacto" min="5" max="50" required autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtNumerocomtacto">Número de Contacto</label>
+                                    <input type="text" name="TxtNumerocomtacto" maxlength="50" asp-for="TxtNumerocomtacto" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtNumerocomtacto" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>¿Cómo prefieres que te contactemos?</label>
+                                    <select requerid aria-requerid="true"
+                                            id="SelContacto"
+                                            name="SelContacto">
+                                        <option val="1">E-mail</option>
+                                        <option val="2">WhatsApp</option>
+                                        <option val="3">Teléfono</option>
+                                    </select>
+                                    @* <span asp-validation-for="idContacto" class="text-danger"></span> *@
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                @* <input type="text" name="txtporquecotiza" placeholder="¿Por qué estás cotizando?" min="10" max="100" required autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtPorquecotiza">¿Por qué estás cotizando?</label>
+                                    <input type="text" name="TxtPorquecotiza" maxlength="40" asp-for="TxtPorquecotiza" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtPorquecotiza" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 8C0 3.59375 3.5625 0 8 0C12.4062 0 16 3.59375 16 8C16 12.4375 12.4062 16 8 16C3.5625 16 0 12.4375 0 8ZM11.5938 6.625C11.9375 6.28125 11.9375 5.75 11.5938 5.40625C11.25 5.0625 10.7188 5.0625 10.375 5.40625L7 8.78125L5.59375 7.40625C5.25 7.0625 4.71875 7.0625 4.375 7.40625C4.03125 7.75 4.03125 8.28125 4.375 8.625L6.375 10.625C6.71875 10.9688 7.25 10.9688 7.59375 10.625L11.5938 6.625Z"
+                                      fill="#4AAB3D" />
+                            </svg>
+                            <h5>Tu Vivienda</h5>
+                        </div>
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tipo de vivienda</label>
+                                    <select requerid aria-requerid="true"
+                                            name="SelTipoVivienda"
+                                            id="SelTipoVivienda">
+                                        <option val="1">Casa</option>
+                                        <option val="2">Departamento</option>
+                                    </select>
+                                    @*   <span asp-validation-for="idTipoVivienda" class="text-danger"></span> *@
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                @* <input type="text" name="txtdireccion" placeholder="Dirección" required min="10" max="100" autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtDireccion">Dirección</label>
+                                    <input type="text" name="TxtDireccion" maxlength="50" asp-for="TxtDireccion" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtDireccion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-12">
+                                @* <input type="text" name="txtdetalleDireccion" placeholder="Detalle adicional de la dirección (opcional)" maxlength="100" autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtDetalleDireccion">Detalle adicional de la dirección (opcional)</label>
+                                    <input type="text" name="TxtDetalleDireccion" maxlength="50" asp-for="TxtDetalleDireccion" autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtDetalleDireccion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label>¿Cómo es tu techo?</label>
+                                    <select requerid aria-requerid="true"
+                                            id="SelTecho"
+                                            name="SelTecho">
+                                        <option val="1">Inclinado</option>
+                                        <option val="2">Plano</option>
+                                    </select>
+                                    @*      <span asp-validation-for="idTecho" class="text-danger"></span> *@
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                @*  <input type="text" name="txtmaterialtecho" placeholder="¿De qué material es tu techo?" required min="10" max="100" autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtMaterialtecho">¿De qué material es tu techo?</label>
+                                    <input type="text" name="TxtMaterialtecho" maxlength="30" asp-for="TxtMaterialtecho" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtMaterialtecho" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                @*  <input type="number" name="txtgastoluz" placeholder="¿Cúal fue el gasto de tu último mes de consumo de luz?" required autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtGastoluz" class="control-label">¿Cúal fue el gasto de tu último mes de consumo de luz?</label>
+                                    <input type="number" name="TxtGastoluz" maxlength="12" asp-for="TxtGastoluz" required min="1" pattern="^[0-9]+" autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtGastoluz" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @*  <input type="text" name="txtmesluz" placeholder="¿A qué mes corresponde tu gasto de luz?" required min="2" max="50" autocomplete="off"> *@
+                                <div class="form-group">
+                                    <label asp-for="TxtMesluz" class="control-label">¿A qué mes corresponde tu gasto de luz?</label>
+                                    <input type="text" name="TxtMesluz" maxlength="30" asp-for="TxtMesluz" required autofocus autocomplete="off" />
+                                    <span asp-validation-for="TxtMesluz" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>¿Cuando consumes más electricidad?</label>
+                                    <select requerid aria-requerid="true"
+                                            id="SelConsumoluz" name="SelConsumoluz">
+                                        <option val="1">+ en verano</option>
+                                        <option val="2">+ en invierno</option>
+                                        <option val="3">+ Siempre igual</option>
+                                    </select>
+                                    @*  <span asp-validation-for="idConsumoluz" class="text-danger"></span> *@
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 8C0 3.59375 3.5625 0 8 0C12.4062 0 16 3.59375 16 8C16 12.4375 12.4062 16 8 16C3.5625 16 0 12.4375 0 8ZM11.5938 6.625C11.9375 6.28125 11.9375 5.75 11.5938 5.40625C11.25 5.0625 10.7188 5.0625 10.375 5.40625L7 8.78125L5.59375 7.40625C5.25 7.0625 4.71875 7.0625 4.375 7.40625C4.03125 7.75 4.03125 8.28125 4.375 8.625L6.375 10.625C6.71875 10.9688 7.25 10.9688 7.59375 10.625L11.5938 6.625Z"
+                                      fill="#4AAB3D" />
+                            </svg>
+                            <h5>Tu Presupuesto</h5>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <h4 class="mb-20">¿Te gustaría agregar una batería?</h4>
+                                <p class="wow fadeInUp" data-wow-delay="0.45s">
+                                    Aumenta tu ahorro y despreocupate frente a un corte de luz contando con un respaldo energético en todo momento (precio incluye IVA).
+                                </p>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>¿Agregas una bateria?</label>
+                                    <select requerid aria-requerid="true"
+                                            id="SelAgregarbateria" name="SelAgregarbateria">
+                                        <option val="1">No necesito batería</option>
+                                        <option val="2">Li-Ion 6 kWh (2 - 5 horas)|$3.900.000</option>
+                                        <option val="3">Li-Ion 12 kWh (4 - 10 horas)|$6.200.000</option>
+                                    </select>
+                                    @*        <span asp-validation-for="idAgregarbateria" class="text-danger"></span> *@
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <h4 class="mb-20">¿Te gustaría agregar una cargador para tu vehículo eléctrico?</h4>
+                                <p class="wow fadeInUp" data-wow-delay="0.45s">
+                                    El Cargador Wallbox puede incluir un socket Tipo I o Tipo II según sea tú necesidad (precio no incluye IVA).
+                                </p>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>¿Agregas un cargador?</label>
+                                    <select requerid aria-requerid="true"
+                                            id="SelAgregarcargadorvehiculo" name="SelAgregarcargadorvehiculo" required>
+                                        <option val="1">No tengo vehículo eléctrico</option>
+                                        <option val="2">Voltex Wallbox|+$2.000.000</option>
+                                    </select>
+                                    @*   <span asp-validation-for="idAgregarcargadorvehiculo" class="text-danger"></span> *@
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <h4 class="mb-20">¿Por qué te interesa utilizar energía solar?</h4>
+                                <p class="wow fadeInUp" data-wow-delay="0.45s">
+
+                                </p>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>¿Cúal es tu opción?</label>
+                                    <select requerid aria-requerid="true"
+                                            id="SelAinteresenergiasolar" name="SelAinteresenergiasolar">
+                                        <option val="1">Ahorro</option>
+                                        <option val="2">Sustentabilidad</option>
+                                        <option val="3">Respaldo</option>
+                                    </select>
+                                    @*          <span asp-validation-for="idInteresenergiasolar" class="text-danger"></span> *@
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @switch (ReCaptchaSettings.Value.Version)
+                            {
+                                case ReCaptchaVersion.V2:
+                                case ReCaptchaVersion.V3:
+                                    // Optionally override language of the recaptcha
+                                    // @Html.ReCaptcha(language: "en")
+                                    @Html.ReCaptcha()
+                                    break;
+                                case ReCaptchaVersion.V2Invisible:
+                                    @Html.ReCaptcha("Submit Invisible ReCaptcha", className: "btn btn-primary", callback: "submitForm")
+                                    break;
+                            }
+                        </div>
+
+
+                        @if (ReCaptchaSettings.Value.Version != ReCaptchaVersion.V2Invisible)
+                        {
+                            <div class="form-group">
+                                <input style="background-color:orange; color:white; width:auto;" type="submit" value="Enviar Información" class="btn btn-primary" />
+                            </div>
+                        }
+
+                        @*               <input style="background-color:orange; color:white; width:auto;" type="submit" value="Enviar Información" class="btn btn-primary" />
+                        *@
+                        @if (TempData["Success"] != null)
+                        {
+                            <!--Mensaje el email con error-->
+                            <div class="alert alert-danger" role="alert">
+                                Estimado: Ocurrio un error al enviar su solicitud, itente nuevamente más tarde. Atte. Equipo www.PremiumSolar.cl&nbsp;@TempData["Success"]
+                            </div>
+                        }
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- Contact area end here -->
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+}

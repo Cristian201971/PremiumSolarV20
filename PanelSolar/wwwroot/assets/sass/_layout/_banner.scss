@@ -1,0 +1,103 @@
+// Banner one area start here ***
+.banner {
+	&-area {
+		padding-top: 170px;
+		padding-bottom: 230px;
+		position: relative;
+		overflow: hidden;
+		&::before {
+			background: linear-gradient(
+				94.58deg,
+				#1f1f25 0.34%,
+				rgba(31, 31, 37, 0.79) 98.11%
+			);
+		}
+		@extend.overlay;
+	}
+	&__right {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		@include breakpoint(max-lg) {
+			display: none;
+		}
+	}
+	&__content {
+		position: relative;
+		max-width: 672px;
+		h1 {
+			color: var(--white);
+		}
+		p {
+			color: var(--white);
+			margin-top: 20px;
+		}
+	}
+}
+// Banner one area end here ***
+
+// Banner Two area start here ***
+.banner-two {
+	&-area {
+		padding: 150px 0;
+		overflow: hidden;
+		&::before {
+			display: none;
+		}
+	}
+	&__shape {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
+	&__content {
+		margin-left: 10%;
+		position: relative;
+		max-width: 580px;
+		h1 {
+			color: var(--heading-color);
+			font-size: 60px;
+			line-height: 80px;
+			@include breakpoint(max-md) {
+				font-size: 40px;
+				line-height: 50px;
+			}
+			@include breakpoint(max-xxsmall) {
+				font-size: 30px;
+				line-height: 40px;
+			}
+		}
+		p {
+			color: var(--paragraph);
+			margin-top: 20px;
+		}
+	}
+}
+// Banner Two area end here ***
+
+// Page banner area start here ***
+.page-banner {
+	background-image: linear-gradient(
+			180deg,
+			#1f1f25 0%,
+			rgba(58, 58, 58, 0.76) 100%
+		),
+		url(../../assets/images/banner/page-banner.jpg);
+	    
+	text-transform: capitalize;
+	text-align: center;
+	h2,
+	a,
+	span {
+		color: var(--white);
+	}
+	h2 {
+		margin-bottom: 10px;
+	}
+	a {
+		&:hover {
+			color: var(--primary-color);
+		}
+	}
+}
+// Page banner area end here ***

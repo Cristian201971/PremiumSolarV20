@@ -1,0 +1,38 @@
+﻿@{
+    
+    //Controlar que el usuario no escriba la url manual%
+    if (TempData["Error"] == null)
+    {
+        Context.Response.Redirect("../Home");
+    }
+
+    ViewBag.Title = "Error 550";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page banner area start here -->
+<section class="page-banner bg-image pt-120 pb-120">
+    <div class="container">
+        <h2 class="wow fadeInUp" data-wow-duration="1.15s" data-wow-delay=".15s">@ViewBag.Title</h2>
+        <div class="breadcrumb-list wow fadeInUp" data-wow-duration="1.30s" data-wow-delay=".30s">
+            <a href="../Home">Inicio</a><span><i class="fa-regular fa-angle-right mx-2"></i>Error</span>
+        </div>
+    </div>
+</section>
+<!-- Page banner area end here -->
+<!-- Error area start here -->
+<section class="error pt-120 pb-120">
+    <div class="container">
+        <h1>5<span class="primary-color">5</span>0</h1>
+        <h2>
+            ¡Ups! Ocurrio un error al intentar enviar tu solicitud, favor de enviar más tarde. ¡Gracias!
+        </h2>
+        <p>
+            El servidor de correo puede que este lleno o falló por conección.
+        </p>
+        <a href="../Home" class="btn-two mt-30 wow fadeInUp" data-wow-delay="0.15s">
+            <i class="fa-solid fa-arrow-left mr-10"></i> Devuelta a Inicio
+        </a>
+    </div>
+</section>
+<!-- Error area end here -->

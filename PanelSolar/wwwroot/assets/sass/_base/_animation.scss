@@ -1,0 +1,27 @@
+//  Video button animation area start here ***
+@-webkit-keyframes video-animation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.5);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(2);
+	}
+}
+
+@keyframes video-animation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.5);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(2);
+	}
+}
+//  Video button animation area end here ***

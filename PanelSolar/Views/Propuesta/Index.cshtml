@@ -1,0 +1,87 @@
+﻿@{
+    if (TempData["Success"] == null)
+    {
+        Context.Response.Redirect("../Home");
+    }
+    ViewBag.Title = "Propuesta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Choose area start here -->
+<section class="about-area choose-area">
+
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <div class="image">
+                    <img class="radius10" src="assets/images/choose/choose-image.jpg" alt="image">
+                </div>
+
+                <div class="about__content wow fadeInDown" data-wow-delay="0.60s">
+                    <ul>
+                        <li><i class="fa-solid fa-house"></i> Tu consumo estimado anual es de: 
+                            <strong>
+                                @TempData["ConsumoEstimadokWh"]
+                            </strong></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="choose__item">
+                    <div class="section-header">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.15s">Tu Propuesta</h5>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.30s">Resultado de nuestro análisis</h2>
+                    </div>
+                    <div class="choose__content">
+                        <ul class="choose-info mt-40 pb-20 wow fadeInDown" data-wow-delay="0.45s">
+                            <li>
+                                <div class="icon">
+                                    <img src="assets/images/icon/talk3.svg" alt="icon">
+                                </div>
+                                <p>
+                                    Según nuestro análsis el Proyecto solar recomendado es el siguiente:
+                                </p>
+                            </li>
+                        </ul>
+                        <div class="about__content wow fadeInDown" data-wow-delay="0.60s">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> @TempData["CantidadPaneles"] </li>
+                                <li><i class="fa-solid fa-check"></i> @TempData["CapacidadkWh"]</li>
+
+                            </ul>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> @TempData["AlmacenBateria"] </li>
+                                <li><i class="fa-solid fa-check"></i> @TempData["MontoAhorro"]</li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Precio estimado:</li>
+                                <li style="font-size:30px;color:orange;">@TempData["PrecioEstimado"]</li>
+                                <li style="font-size:small">(El precio se ajsutará al valor de la UF al día de celelbrar el contrato)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             
+
+            </div>
+        </div>
+
+        <a href="../Home" class="btn-two mt-30 wow fadeInUp" data-wow-delay="0.15s">
+            <i class="fa-solid fa-arrow-left mr-10"></i> Devuelta a Inicio
+        </a>
+
+     
+        <div class="bars d-block d-lg-none">
+            <i id="openButton" class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="alert alert-primary" role="alert">
+            Estimado: @TempData["nombreApellido"], hemos recibido tu email y pronto nos contactaremos contigo. Atte. Equipo PremiumSolar.cl
+        </div>
+
+    </div>
+    @* } *@
+</section>
+<!-- Choose area end here -->
